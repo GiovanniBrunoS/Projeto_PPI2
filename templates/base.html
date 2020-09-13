@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Giovanni">
+    <meta name="description" content="Manga hosting website with a blog" />
+    <meta name="keywords" content="trabalho, IFSC, manga, blog" />
+    <title>Home - Manga</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<div class="container-fluid">
+
+    <nav class="bg-dark">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'manga_list' %}">Mangas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post_list' %}">Blog</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'manga_new' %}">New Manga</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post_draft_list' %}">Post Drafts</a>
+            </li>
+            <li class="nav-item ml-md-auto">
+                <div class="nav-text">
+                    <p class=" text-uppercase text-light">Hello {{ user.username }}</p>
+                </div>
+            </li>
+            <li class="nav-item ml-md-auto">
+                <div class="nav-link">
+                    <a href="{% url 'logout' %}"><span class="material-icons">clear</span></a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item ml-md-auto">
+                <div class="nav-link">
+                    <a href="{% url 'login' %}" class="top-menu"><span class="material-icons">login</span></a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="row">
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+</html>

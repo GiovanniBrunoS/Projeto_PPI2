@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            </br>
+            <h1 class="text-center">Chapter</h1>
+            </br>
+            <div class="card text-center">
+                <card-body>
+                    <h5 class="card-title">Chapter: {{chapter.chapter_number}} - {{chapter.title}}</h5>
+                    <p class="card-text">Language: {{chapter.language}} / Upload: {{chapter.created_date}}</p>
+                </card-body>
+            </div>
+            </br>
+            <div class="text-center">
+                <a class="btn btn-default btn-dark" href="{{ chapter.chapter.url }}"><span
+                        class="material-icons">get_app</span></a>
+                <p>Download Chapter</p>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+{% endblock %}

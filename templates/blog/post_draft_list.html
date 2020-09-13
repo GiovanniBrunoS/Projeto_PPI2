@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            </br>
+            <h1 class="text-center">Draft</h1>
+            </br>
+            {% for post in posts %}
+            <div class="card text-center">
+                <card-body>
+                    <div class="post">
+                        <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+                        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                        <p>{{ post.text|truncatechars:200 }}</p>
+                    </div>
+                </card-body>
+            </div>
+            </br>
+            {% endfor %}
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

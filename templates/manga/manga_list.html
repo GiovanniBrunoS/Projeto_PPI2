@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            </br>
+            <h1 class="text-center">Manga List</h1>
+            </br>
+            {% if manga_list %}
+            {% for manga in manga_list%}
+            <a href="{% url 'manga_detail' pk=manga.pk %}">
+                <div class="card text-center">
+                    <card-body>
+                        <h1 class="card-title">{{manga.title}}</h1>
+                    </card-body>
+                </div>
+            </a>
+            </br>
+            {% endfor %}
+            {% else %}
+            <p>Não há mangas disponiveis</p>
+            {% endif %}
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row-12">
+    <div class="col-12">
+        <div class="col-12">
+            </br>
+            <h1 class="text-center">Manga details</h1>
+            </br>
+        </div>
+        {% if manga %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-6">
+                    <div class="card text-left">
+                        <card-body>
+                            <h5 class="card-title">Manga title: {{manga.title}}</h5>
+                            <p class="card-text">Author: {{manga.author}}</p>
+                            <p class="card-text">Artist: {{manga.artist}}</p>
+                            <p class="card-text">Description: {{manga.description}}</p>
+                        </card-body>
+                    </div>
+                    {% if user.is_authenticated %}
+                    </br>
+                    <div class="text-center">
+                        <a class="btn btn-default btn-dark" href="{% url 'manga_edit' pk=manga.pk %}"><span
+                                class="material-icons">create</span></a> Edit Manga
+                        <a class="btn btn-default btn-dark" href="{% url 'manga_remove' pk=manga.pk %}"><span
+                                class="material-icons">delete</span></a> Remove Manga
+                        <a class="btn btn-default btn-dark" href="{% url 'chapter_new' pk=manga.pk %}"><span
+                                class="material-icons">add</span></a> New Chapter
+                    </div>
+                    {% endif %}
+                    </br>
+                    <h1 class="text-center">Chapters</h1>
+                    </br>
+                    {% for chapter in chapters %}
+                    <a href="{% url 'reader' manga.pk chapter.pk %}">
+                        <div class="card text-center">
+                            <card-body>
+                                <h5 class="card-title">Chapter: {{chapter.chapter_number}} - {{chapter.title}}</h5>
+                                <p class="card-text">Language: {{chapter.language}} / Upload: {{chapter.created_date}}
+                                </p>
+                            </card-body>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    {% else %}
+                    <p>Não há mangas disponiveis</p>
+                    {% endif %}
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

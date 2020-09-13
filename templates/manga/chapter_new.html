@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            </br>
+            <h1 class="text-center">New Chapter</h1>
+            </br>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-dark">Save</button>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+{% endblock %}
